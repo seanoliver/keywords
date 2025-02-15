@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Keywords",
+  "version": "0.1.0",
+  "description": "Define the web.",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": []
+}
