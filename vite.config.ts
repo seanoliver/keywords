@@ -8,8 +8,6 @@ import { resolve } from 'path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// Docs: https://vite.dev/config/
-// Initial Setup: https://medium.com/@5tigerjelly/creating-a-chrome-extension-with-react-and-vite-boilerplate-provided-db3d14473bf6
 export default defineConfig({
   plugins: [
     react(),
@@ -29,13 +27,13 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         content: resolve(__dirname, 'src/content/index.ts'),
       },
-      output: [
-        {
-          entryFileNames: 'content/index.js',
-          format: 'iife',
-          name: 'content',
-        }
-      ]
+      output: {
+        format: 'es',
+        entryFileNames: '[name]/index.js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        inlineDynamicImports: false,
+      },
     },
   },
 })
