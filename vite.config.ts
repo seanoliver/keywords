@@ -4,6 +4,7 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import eslint from "vite-plugin-eslint";
 import { fileURLToPath } from "url";
 import path from "path";
+import { resolve } from 'path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,9 +26,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        popup: path.resolve(__dirname, "index.html"),
-        background: path.resolve(__dirname, "src/background/index.ts"),
-        content: path.resolve(__dirname, "src/content/index.ts"),
+        main: resolve(__dirname, 'index.html'),
+        content: resolve(__dirname, 'src/content/index.ts'),
+      },
+      output: {
+        entryFileNames: '[name]/index.js',
       },
     },
   },
