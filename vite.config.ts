@@ -22,18 +22,20 @@ export default defineConfig({
     }),
   ],
   build: {
+    outDir: 'dist',
     rollupOptions: {
       input: {
+        content: resolve(__dirname, 'src/content/index.tsx'),
         main: resolve(__dirname, 'index.html'),
-        content: resolve(__dirname, 'src/content/index.ts'),
       },
       output: {
         format: 'es',
         entryFileNames: '[name]/index.js',
-        chunkFileNames: 'chunks/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
+        extend: true,
         inlineDynamicImports: false,
       },
+      external: ['chrome']
     },
   },
 })
